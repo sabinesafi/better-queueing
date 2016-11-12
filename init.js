@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		newAttribution()
 	})
 	document.querySelector('#table-free-btn').addEventListener('click', () => {
-		freeTable()
-	})
+		if (currentWaitingList.length !== 0) {freeTable()}
+		}
+	)
 	displayCount()
 })
