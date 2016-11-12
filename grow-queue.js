@@ -1,7 +1,8 @@
 localStorage.setItem('latestAttribution', 0)
 localStorage.setItem('currentWaitingList', JSON.stringify([]))
 
-const currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList'))
+let currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList'))
+
 
 const newAttribution = () => {
 	growAttributionCount()
@@ -12,6 +13,7 @@ const newAttribution = () => {
 	if (latestAttribution >= 2) {removeDiv()	}
 	introduceWaitingList(latestAttribution)
 	generateWaitingList()
+	displayCount() //compteur côté restaurateur
 }
 
 
@@ -57,6 +59,7 @@ const generateWaitingList = () => {
 			}
 		}
 	})
+	return document.querySelector("#waiting-list")
 }
 
 
