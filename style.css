@@ -1,0 +1,47 @@
+body {
+	font-family: arial, sans-serif;
+}
+
+h1 {
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-bottom: 20px;
+}
+
+div#bloc-client {
+	background-color: lightblue;
+	width: 40%;
+	padding: 10 30 10 30;
+	border-radius: 5px;
+}
+
+#get-attribution-btn {
+	background-color: #01516d ;
+	border: none;
+	border-radius: 2px;
+	color: white;
+	font-size: 14;
+	padding: 5 20 5 20;
+	align-content: center;
+}
+
+#get-attribution-btn:hover {
+	background-color: #03759e;
+	cursor: pointer;
+}
+
+#btn-numero-attrib {
+	text-align: center;
+}
+
+div#display-attribution {
+	font-size: 20px;
+}
+
+div#display-waiting-list {
+	font-size: 13px;
+	background-color: #d2e9f0;
+	border-radius: 3px;
+	padding: 10;
+
+}
