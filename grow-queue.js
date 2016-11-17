@@ -1,7 +1,8 @@
 localStorage.setItem('latestAttribution', 0)
 localStorage.setItem('currentWaitingList', JSON.stringify([]))
 
-const currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList'))
+let currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList'))
+
 
 const newAttribution = () => {
 	growAttributionCount()
@@ -12,6 +13,8 @@ const newAttribution = () => {
 	if (latestAttribution >= 2) {removeDiv()	}
 	introduceWaitingList(latestAttribution)
 	generateWaitingList()
+	displayCount() //compteur côté restaurateur
+	if (nowCallingNumber >= 1) {displayNowCallingNumber(nowCallingNumber)}
 }
 
 
@@ -35,14 +38,17 @@ const introduceWaitingList = (latestAttribution) => {
 	const div = document.createElement('div')
 	div.setAttribute('id', 'display-waiting-list')
 	const generateInnerHTML = (latestAttribution) => {
-		if (latestAttribution <= currentWaitingList.sort()[0]) {
-			return `<p>Vous êtes le prochain sur la liste d'attente !</p>`
+		if (latestAttribution === nowCallingNumber) { // A changer quand plusieurs utilisateurs pour le compteur
+			return `<p>C'est à vous !</p>`
 		}
-		else {
-			return `<p>Les numéros suivants sont avant vous :</p>
-				<ul id="waiting-list"></ul>`
+			else if (latestAttribution <= currentWaitingList.sort()[0]) {
+				return `<p>Vous êtes le prochain sur la liste d'attente !</p>`
+			}
+			else {
+				return `<p>Les numéros suivants sont avant vous :</p>
+					<ul id="waiting-list"></ul>`
+			}
 		}
-	}
 	div.innerHTML = generateInnerHTML(latestAttribution)
 	document.querySelector('#bloc-client').appendChild(div)
 }
@@ -57,6 +63,7 @@ const generateWaitingList = () => {
 			}
 		}
 	})
+	return document.querySelector("#waiting-list")
 }
 
 

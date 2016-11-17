@@ -6,16 +6,19 @@ h1 {
 	padding-top: 20px;
 	padding-left: 10px;
 	padding-bottom: 20px;
+	text-align: center;
 }
 
-div#bloc-client {
+.section {
+	display: inline-block;
 	background-color: lightblue;
 	width: 40%;
 	padding: 10 30 10 30;
 	border-radius: 5px;
+	margin-left: 3%;
 }
 
-#get-attribution-btn {
+.btn {
 	background-color: #01516d ;
 	border: none;
 	border-radius: 2px;
@@ -25,7 +28,7 @@ div#bloc-client {
 	align-content: center;
 }
 
-#get-attribution-btn:hover {
+.btn:hover {
 	background-color: #03759e;
 	cursor: pointer;
 }
