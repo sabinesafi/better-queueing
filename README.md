@@ -2,4 +2,8 @@
 A practical exercise in learning JS: make queueing at a restaurant suck less!
 
 ## Développement - En-cours
-* US1
+* Refactoring
+
+##Développement - Fait
+* US1 - Attribution
+* US2 - Liberation
