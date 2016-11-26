@@ -8,10 +8,10 @@ queue.get = () =>
 
 
 
-/*let latestAttribution = {}
+let lAttribution = {}
 
-latestAttribution.save = (int) =>
+lAttribution.save = (int) =>
 	localStorage.setItem('latestAttribution', int)
 
-latestAttribution.get = () => 
-	JSON.parse(localStorage.getItem('latestAttribution'))*/
+lAttribution.get = () => 
+	JSON.parse(localStorage.getItem('latestAttribution'))

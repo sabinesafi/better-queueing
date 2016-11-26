@@ -14,4 +14,4 @@ A practical exercise in learning JS: make queueing at a restaurant suck less!
 
 2 main variables are used everywhere:
 * *queue* is the current waiting list at any given moment. It's an array, currently composed of integers only.
-* *latestAttribution* is the lastest number that as been attributed (and therefore addded to the queue). It is the queue's biggest value at any given moment.
+* *lAttribution* or *latestAttribution* is the lastest number that as been attributed (and therefore addded to the queue). It is the queue's biggest value at any given moment.

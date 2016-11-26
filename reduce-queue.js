@@ -2,12 +2,11 @@ let nowCallingNumber = undefined
 
 const freeTable = () => {
 	nowCallingNumber = queue.get()[0]
-	const tempQueue = queue.get().slice(1)
-	queue.save(tempQueue)
-	const latestAttribution = localStorage.getItem('latestAttribution')
-	if (latestAttribution === nowCallingNumber) {removeDiv()}
-		else if (latestAttribution >= 2) {removeDiv()}
-	introduceWaitingList(latestAttribution)
+	const newQueue = queue.get().slice(1)
+	queue.save(newQueue)
+	if (lAttribution.get() === nowCallingNumber) {removeDiv()}
+		else if (lAttribution.get() >= 2) {removeDiv()}
+	introduceWaitingList(lAttribution.get())
 	generateWaitingList()
 	displayCount() //compteur côté restaurateur
 	if (nowCallingNumber >= 1) {displayNowCallingNumber(nowCallingNumber)}

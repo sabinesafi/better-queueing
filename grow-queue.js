@@ -1,14 +1,13 @@
-localStorage.setItem('latestAttribution', 0)
+lAttribution.save(0)
 queue.save([])
 
 const newAttribution = () => {
 	growAttributionCount()
-	const latestAttribution = localStorage.getItem('latestAttribution')
-	growWaitingList(latestAttribution)
+	growWaitingList(lAttribution.get())
 	document.querySelector("#display-attribution")
-	.innerHTML = `Vous êtes le numéro : <strong>${latestAttribution}</strong> dans la liste.`
-	if (latestAttribution >= 2) {removeDiv()	}
-	introduceWaitingList(latestAttribution)
+	.innerHTML = `Vous êtes le numéro : <strong>${lAttribution.get()}</strong> dans la liste.`
+	if (lAttribution.get() >= 2) {removeDiv()}
+	introduceWaitingList(lAttribution.get())
 	generateWaitingList()
 	displayCount() //compteur côté restaurateur
 	if (nowCallingNumber >= 1) {displayNowCallingNumber(nowCallingNumber)}
@@ -16,14 +15,14 @@ const newAttribution = () => {
 
 
 const growAttributionCount = () => {
-	const currentAttribution = JSON.parse(localStorage.getItem('latestAttribution')) +1
-	localStorage.setItem('latestAttribution', currentAttribution)
+	const newAttribution = lAttribution.get() +1
+	lAttribution.save(newAttribution)
 }
 
 const growWaitingList = (latestAttribution) => {
-	let tempQueue = queue.get()
-	tempQueue.push(latestAttribution)
-	queue.save(tempQueue)
+	let newQueue = queue.get()
+	newQueue.push(latestAttribution)
+	queue.save(newQueue)
 }
 
 const removeDiv = () => {
@@ -53,8 +52,8 @@ const introduceWaitingList = (latestAttribution) => {
 
 const generateWaitingList = () => {
 	queue.get().forEach(attribution => {
-		if (localStorage.getItem('latestAttribution') > 1) {
-			if (attribution < localStorage.getItem('latestAttribution')) {
+		if (lAttribution.get() > 1) {
+			if (attribution < lAttribution.get()) {
 				const li = document.createElement('li')
 				li.innerHTML = `Numéro ${attribution}`
 				document.querySelector("#waiting-list").appendChild(li)
