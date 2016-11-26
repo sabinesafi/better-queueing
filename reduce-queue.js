@@ -1,10 +1,9 @@
 let nowCallingNumber = undefined
 
 const freeTable = () => {
-	nowCallingNumber = currentWaitingList[0]
-	const updatedWaitingList = currentWaitingList.slice(1)
-	localStorage.setItem('currentWaitingList', JSON.stringify(updatedWaitingList))
-	currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList')) //MAJ la variable utilisée partout
+	nowCallingNumber = queue.get()[0]
+	const tempQueue = queue.get().slice(1)
+	queue.save(tempQueue)
 	const latestAttribution = localStorage.getItem('latestAttribution')
 	if (latestAttribution === nowCallingNumber) {removeDiv()}
 		else if (latestAttribution >= 2) {removeDiv()}
@@ -22,5 +21,5 @@ const displayNowCallingNumber = (nowCallingNumber) => {
 
 const displayCount = () => {
 	document.querySelector("#display-count")
-	.innerHTML = `${currentWaitingList.length} personne(s) en attente d'une table`
+	.innerHTML = `${queue.get().length} personne(s) en attente d'une table`
 }

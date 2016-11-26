@@ -1,8 +1,5 @@
 localStorage.setItem('latestAttribution', 0)
-localStorage.setItem('currentWaitingList', JSON.stringify([]))
-
-let currentWaitingList = JSON.parse(localStorage.getItem('currentWaitingList'))
-
+queue.save([])
 
 const newAttribution = () => {
 	growAttributionCount()
@@ -24,8 +21,9 @@ const growAttributionCount = () => {
 }
 
 const growWaitingList = (latestAttribution) => {
-	currentWaitingList.push(latestAttribution)
-	localStorage.setItem('currentWaitingList', JSON.stringify(currentWaitingList))
+	let tempQueue = queue.get()
+	tempQueue.push(latestAttribution)
+	queue.save(tempQueue)
 }
 
 const removeDiv = () => {
@@ -41,7 +39,7 @@ const introduceWaitingList = (latestAttribution) => {
 		if (latestAttribution === nowCallingNumber) { // A changer quand plusieurs utilisateurs pour le compteur
 			return `<p>C'est à vous !</p>`
 		}
-			else if (latestAttribution <= currentWaitingList.sort()[0]) {
+			else if (latestAttribution <= queue.get().sort()[0]) { // Fonction sort() à adapter au delà de 9 attributions !
 				return `<p>Vous êtes le prochain sur la liste d'attente !</p>`
 			}
 			else {
@@ -54,7 +52,7 @@ const introduceWaitingList = (latestAttribution) => {
 }
 
 const generateWaitingList = () => {
-	currentWaitingList.forEach(attribution => {
+	queue.get().forEach(attribution => {
 		if (localStorage.getItem('latestAttribution') > 1) {
 			if (attribution < localStorage.getItem('latestAttribution')) {
 				const li = document.createElement('li')
