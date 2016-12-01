@@ -1,6 +1,6 @@
 let nowCallingNumber = undefined
 
-const freeTable = () => {
+const callAttribution = () => {
 	nowCallingNumber = queue.get()[0]
 	const newQueue = queue.get().slice(1)
 	queue.save(newQueue)
@@ -20,5 +20,5 @@ const displayNowCallingNumber = (nowCallingNumber) => {
 
 const displayCount = () => {
 	document.querySelector("#display-count")
-	.innerHTML = `${queue.get().length} personne(s) en attente d'une table`
+	.innerHTML = `${queue.get().length} personne(s) sont en attente.`
 }
