@@ -7,10 +7,7 @@ const newAttribution = () => {
 	document.querySelector("#display-attribution")
 	.innerHTML = `Vous êtes le numéro : <strong>${lAttribution.get()}</strong> dans la liste.`
 	if (lAttribution.get() >= 2) {removeDiv()}
-	introduceWaitingList(lAttribution.get())
-	generateWaitingList()
-	displayCount() //compteur côté restaurateur
-	if (nowCallingNumber >= 1) {displayNowCallingNumber(nowCallingNumber)}
+	updateQueueDisplayEverywhere()
 }
 
 
@@ -29,6 +26,12 @@ const removeDiv = () => {
 	const childDiv = document.querySelector('#display-waiting-list')
 	const parentDiv = document.querySelector('#bloc-client')
 	parentDiv.removeChild(childDiv)
+}
+const updateQueueDisplayEverywhere = () => {
+	introduceWaitingList(lAttribution.get())
+	generateWaitingList()
+	displayCount() //compteur côté restaurateur
+	if (nowCallingNumber >= 1) {displayNowCallingNumber(nowCallingNumber)}
 }
 
 const introduceWaitingList = (latestAttribution) => {
